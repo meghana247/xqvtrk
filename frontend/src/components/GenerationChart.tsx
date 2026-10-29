@@ -8,7 +8,13 @@ interface Props {
   horizon: number;
 }
 
+// Ranges up to this long label ticks with the time as well as the day.
+const SHORT_RANGE_MS = 3 * 86_400_000;
+
 export function GenerationChart({ series, horizon }: Props) {
+  const span = series.length ? Date.parse(series[series.length - 1].time) - Date.parse(series[0].time) : 0;
+  const formatTick = span <= SHORT_RANGE_MS ? formatDateTime : formatDay;
+
   return (
     <section className="card">
       <h2>Actual vs forecast wind generation</h2>
@@ -16,7 +22,7 @@ export function GenerationChart({ series, horizon }: Props) {
       <ResponsiveContainer width="100%" height={360}>
         <LineChart data={series} margin={{ top: 8, right: 8, bottom: 0, left: 8 }}>
           <CartesianGrid stroke="var(--grid)" vertical={false} />
-          <XAxis dataKey="time" tickFormatter={formatDay} minTickGap={40} stroke="var(--muted)" />
+          <XAxis dataKey="time" tickFormatter={formatTick} minTickGap={40} stroke="var(--muted)" />
           <YAxis tickFormatter={(value) => `${value / 1000}k`} stroke="var(--muted)" width={40} />
           <Tooltip
             labelFormatter={formatDateTime}
