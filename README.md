@@ -5,7 +5,7 @@ A web app for a UK utility's day-ahead trading team. It shows how accurate natio
 - **Actuals:** [Elexon FUELHH](https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/FUELHH/stream) (`fuelType = WIND`, half-hourly)
 - **Forecasts:** [Elexon WINDFOR](https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/WINDFOR/stream) (hourly, republished several times a day)
 
-**Live app:** _to be added after deployment_
+**Live app:** https://xqvtrk.vercel.app
 
 ## How it works
 
@@ -112,7 +112,7 @@ docker-compose.yml
 | `GET /api/metrics?horizon=24&start=…&end=…` | Error metrics for one horizon |
 | `GET /api/metrics/by-horizon?start=…&end=…` | Error metrics for every horizon from 0 to 48h |
 
-`start` and `end` are optional, inclusive dates. Interactive docs are at `/docs` on the backend.
+`start` and `end` are optional, inclusive dates. When running locally, interactive API docs are at http://localhost:8000/docs.
 
 ## Running the app
 
