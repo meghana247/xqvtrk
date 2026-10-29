@@ -98,6 +98,8 @@ frontend/                React · TypeScript · Vite · Recharts
   nginx.conf             Serves the build and proxies /api to the backend
 analysis/
   wind_forecast_analysis.ipynb   Error distribution, time of day, wind level, horizon, worst misses
+api/index.py             Vercel serverless entry point for the backend
+vercel.json              Vercel build and routing config
 docker-compose.yml
 ```
 
