@@ -22,7 +22,7 @@ For the chosen horizon and date range, the app reports the error (`forecast − 
 
 ## Findings
 
-Based on delivery from 2 Jan to 1 Feb 2026. One winter month is a small sample, so treat these as pilot results.
+Based on delivery from 2 Jan to 1 Feb 2026. One winter month is a small sample, so treat these as pilot results. The full analysis, with charts, is in the [analysis notebook](analysis/wind_forecast_analysis.ipynb).
 
 **1. The forecast consistently over-predicts wind.**
 At 24h ahead, the forecast is above the actual in 87% of hours, by 1,736 MW on average (about 15% of mean wind output).
@@ -96,6 +96,8 @@ frontend/                React · TypeScript · Vite · Recharts
     components/          Controls, metrics panel and charts
     App.tsx              Page layout and state
   nginx.conf             Serves the build and proxies /api to the backend
+analysis/
+  wind_forecast_analysis.ipynb   Error distribution, time of day, wind level, horizon, worst misses
 docker-compose.yml
 ```
 
@@ -139,6 +141,17 @@ npm run dev
 
 ```bash
 cd backend && pytest
+```
+
+**Analysis notebook:**
+
+The notebook reuses the backend's data loading, so it runs from the `analysis/` folder.
+
+```bash
+cd analysis
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+jupyter notebook wind_forecast_analysis.ipynb
 ```
 
 ## AI tools
